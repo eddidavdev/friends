@@ -1,0 +1,31 @@
+<%= form_with(model: friend) do |form| %>
+  
+
+  <div class="field mb-3">
+    <%= form.label :first_name , class: "form-label"%>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :last_name , class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :email , class: "form-label" %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :birth_date , class: "form-label" %>
+    <%= form.date_select :birth_date, start_year: Date.today.year  , end_year: Date.today.year - 90 , class: "form-control"%>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.number_field :user_id, id: :friend_user_id , value: current_user.id, class: "form-control" , type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-secondary" %>
+  </div>
+<% end %>

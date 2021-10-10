@@ -1,0 +1,47 @@
+<% if user_signed_in? then%>
+
+  <h1>Friend List</h1>
+  
+  <% if @filter != "" %>
+    <i>Data filtered by </i> <b><%= @filter %></b>
+    <br/>
+    <br/>
+  <% end %>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Friend name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birth date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <% if friend.user == current_user %>
+      <tr>
+        <td><%= link_to friend.first_name + " " + friend.last_name, friend %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.birth_date %></td>      
+        <td><%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-sm btn-outline-danger"%></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Friend', new_friend_path, class: "btn btn-secondary" %>
+
+
+<% else %>
+
+  <h1>Welcome to Friends Book</h1>
+
+  <i>Sign in to record your friends</i>
+
+<% end %>
+
